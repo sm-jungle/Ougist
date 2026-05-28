@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<!--
+  Amazon 商品详情页 (Product Detail Page, 简称 DPP) 代码结构参考
+  参考页面: https://www.amazon.com/dp/B0G4M937GT#immersive-view_1774959928401
+
+  说明:
+  - 本文件按 Amazon DPP 真实使用的 DOM ID / class 命名 (#dp, #centerCol, #rightCol 等)
+    复刻整体骨架,便于学习 / 二次开发 / 做仿站模板。
+  - 样式与脚本是占位实现,只为可视化骨架;真实站点由海量 A/B widget 拼装。
+  - URL 锚点 #immersive-view_<id> 对应 Amazon 近期的"沉浸式视图"模块
+    (整屏图文滚动展示),在下方 #immersiveView_feature_div 中有体现。
+-->
+<html lang="en" class="a-no-js" data-19ax5a9jf="dingo">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Amazon.com: Product Title - ASIN B0G4M937GT</title>
+  <link rel="canonical" href="https://www.amazon.com/dp/B0G4M937GT">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body class="a-m-us a-aui_72554-c a-aui_a11y_6_837773-c">
+
+<!-- ============================================================
+     1. 顶部导航 #navbar (a-page > #navbar)
+     Amazon 用 #nav-belt + #nav-main 两条横条
+============================================================ -->
+<header id="navbar" class="nav-sprite-v1" role="navigation">
+  <div id="nav-belt" class="nav-belt">
+    <a id="nav-logo" href="/" aria-label="Amazon">
+      <span class="nav-logo-base">amazon</span>
+      <span class="nav-logo-locale">.com</span>
+    </a>
+
+    <div id="nav-global-location-slot">
+      <a id="nav-global-location-popover-link" href="#">
+        <span class="nav-line-1">Deliver to</span>
+        <span class="nav-line-2">United States</span>
+      </a>
+    </div>
+
+    <div id="nav-search">
+      <form class="nav-searchbar" role="search">
+        <select id="searchDropdownBox" class="nav-search-dropdown">
+          <option value="aps">All</option>
+        </select>
+        <input id="twotabsearchtextbox" type="text" class="nav-input"
+               placeholder="Search Amazon" aria-label="Search Amazon">
+        <button id="nav-search-submit-button" class="nav-search-submit" type="submit">
+          <span class="nav-search-submit-icon" aria-hidden="true">&#128269;</span>
+        </button>
+      </form>
+    </div>
+
+    <div id="nav-tools">
+      <a id="nav-link-accountList" href="#">
+        <span class="nav-line-1">Hello, sign in</span>
+        <span class="nav-line-2">Account &amp; Lists</span>
+      </a>
+      <a id="nav-orders" href="#">
+        <span class="nav-line-1">Returns</span>
+        <span class="nav-line-2">&amp; Orders</span>
+      </a>
+      <a id="nav-cart" href="#" aria-label="Shopping cart">
+        <span id="nav-cart-count" class="nav-cart-count">0</span>
+        <span class="nav-cart-text">Cart</span>
+      </a>
+    </div>
+  </div>
+
+  <div id="nav-main" class="nav-main">
+    <ul class="nav-left">
+      <li><a href="#">All</a></li>
+      <li><a href="#">Today's Deals</a></li>
+      <li><a href="#">Customer Service</a></li>
+      <li><a href="#">Registry</a></li>
+      <li><a href="#">Gift Cards</a></li>
+      <li><a href="#">Sell</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- ============================================================
+     2. 主体 #dp / #dp-container
+     Amazon 把整个商品页用 #dp 包住,内部三列布局:
+         #leftCol  -> 图片画廊
+         #centerCol -> 标题 / 评分 / 价格 / 选项 / overview
+         #rightCol -> 购买框 buybox
+============================================================ -->
+<main id="dp" class="dp-container" data-asin="B0G4M937GT">
+  <div id="a-page">
+
+    <!-- 面包屑 -->
+    <div id="wayfinding-breadcrumbs_feature_div" class="a-breadcrumb">
+      <ul class="a-unordered-list a-horizontal a-size-small">
+        <li><a href="#">Beauty &amp; Personal Care</a></li>
+        <li class="a-breadcrumb-divider">›</li>
+        <li><a href="#">Fragrance</a></li>
+        <li class="a-breadcrumb-divider">›</li>
+        <li><a href="#">Women's</a></li>
+      </ul>
+    </div>
+
+    <!-- 三列容器 -->
+    <div id="centerCol_wrapper" class="dp-three-col">
+
+      <!-- ---------- 2.1 左列: 图片区 #leftCol / #imageBlock ---------- -->
+      <section id="leftCol" class="dp-left-col">
+        <div id="imageBlock_feature_div">
+          <div id="imageBlock" class="image-block">
+            <div id="altImages" class="alt-images" role="list" aria-label="Image thumbnails">
+              <ul class="a-unordered-list a-nostyle a-vertical">
+                <li class="a-spacing-small item" data-thumb="1">
+                  <span class="a-list-item">
+                    <span class="a-button a-button-thumbnail a-button-toggle">
+                      <span class="a-button-inner">
+                        <img alt="thumb 1" src="https://placehold.co/64x64?text=1">
+                      </span>
+                    </span>
+                  </span>
+                </li>
+                <li class="a-spacing-small item" data-thumb="2">
+                  <span class="a-list-item">
+                    <span class="a-button a-button-thumbnail">
+                      <span class="a-button-inner">
+                        <img alt="thumb 2" src="https://placehold.co/64x64?text=2">
+                      </span>
+                    </span>
+                  </span>
+                </li>
+                <li class="a-spacing-small item" data-thumb="3">
+                  <span class="a-list-item">
+                    <span class="a-button a-button-thumbnail">
+                      <span class="a-button-inner">
+                        <img alt="thumb 3" src="https://placehold.co/64x64?text=3">
+                      </span>
+                    </span>
+                  </span>
+                </li>
+              </ul>
+            </div>
+
+            <div id="main-image-container" class="main-image-container">
+              <div id="ivLargeImage" class="iv-large-image">
+                <img id="landingImage" alt="Main product image"
+                     src="https://placehold.co/520x520?text=Main+Image"
+                     data-old-hires="https://placehold.co/1500x1500?text=Hires">
+              </div>
+              <ul id="imageBlockThumbs" class="image-block-thumbs">
+                <li><button class="a-button a-button-primary">Roll over image to zoom in</button></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ---------- 2.2 中列: 商品核心信息 #centerCol ---------- -->
+      <section id="centerCol" class="dp-center-col">
+
+        <!-- 标题块 -->
+        <div id="title_feature_div">
+          <div id="titleSection" class="title-section">
+            <h1 id="title" class="a-size-large a-spacing-none">
+              <span id="productTitle" class="product-title">
+                Sample Product Title — Replace With Real Title
+              </span>
+            </h1>
+            <a id="bylineInfo" class="a-link-normal" href="#">
+              Visit the Brand Store
+            </a>
+          </div>
+        </div>
+
+        <!-- 评分块 -->
+        <div id="averageCustomerReviews_feature_div">
+          <div id="averageCustomerReviews" data-asin="B0G4M937GT">
+            <span id="acrPopover" class="a-declarative" data-action="acrStarsLink-click-metrics">
+              <a href="#customerReviews" class="a-popover-trigger">
+                <i class="a-icon a-icon-star a-star-4-5">
+                  <span class="a-icon-alt">4.5 out of 5 stars</span>
+                </i>
+                <span class="a-size-base a-color-base"> 4.5 </span>
+              </a>
+            </span>
+            <a id="acrCustomerReviewLink" href="#customerReviews">
+              <span id="acrCustomerReviewText" class="a-size-base">12,847 ratings</span>
+            </a>
+          </div>
+        </div>
+
+        <hr class="a-divider-normal">
+
+        <!-- 价格块 -->
+        <div id="corePriceDisplay_desktop_feature_div" class="core-price">
+          <div id="apex_desktop">
+            <span class="a-price aok-align-center" data-a-color="price">
+              <span class="a-offscreen">$39.99</span>
+              <span aria-hidden="true">
+                <span class="a-price-symbol">$</span>
+                <span class="a-price-whole">39<span class="a-price-decimal">.</span></span>
+                <span class="a-price-fraction">99</span>
+              </span>
+            </span>
+            <span class="a-text-strike">$59.99</span>
+            <span class="savingsPercentage">-33%</span>
+          </div>
+          <div id="promoPriceBlockMessage_feature_div">
+            <span class="a-color-success">FREE delivery</span> Tomorrow
+          </div>
+        </div>
+
+        <hr class="a-divider-normal">
+
+        <!-- Variation / Twister: 颜色 / 规格 -->
+        <div id="twister_feature_div">
+          <div id="twister" class="twister">
+            <div id="variation_color_name" class="variation-row">
+              <label class="a-form-label">Color:
+                <span class="selection">Midnight Black</span>
+              </label>
+              <ul class="a-unordered-list a-nostyle a-horizontal">
+                <li class="swatchAvailable a-active"><span class="a-list-item">Black</span></li>
+                <li class="swatchAvailable"><span class="a-list-item">Silver</span></li>
+                <li class="swatchAvailable"><span class="a-list-item">Rose Gold</span></li>
+              </ul>
+            </div>
+            <div id="variation_size_name" class="variation-row">
+              <label class="a-form-label">Size:
+                <span class="selection">50ml</span>
+              </label>
+              <ul class="a-unordered-list a-nostyle a-horizontal">
+                <li class="a-active"><span class="a-list-item">30ml</span></li>
+                <li><span class="a-list-item">50ml</span></li>
+                <li><span class="a-list-item">100ml</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <hr class="a-divider-normal">
+
+        <!-- Product Overview: 关键属性表 -->
+        <div id="productOverview_feature_div">
+          <div id="productOverview" class="product-overview">
+            <table class="a-normal a-spacing-micro">
+              <tbody>
+                <tr><td class="a-span3"><span class="a-text-bold">Brand</span></td>
+                    <td><span class="a-size-base po-break-word">SampleBrand</span></td></tr>
+                <tr><td class="a-span3"><span class="a-text-bold">Scent</span></td>
+                    <td><span class="a-size-base po-break-word">Floral</span></td></tr>
+                <tr><td class="a-span3"><span class="a-text-bold">Item Form</span></td>
+                    <td><span class="a-size-base po-break-word">Spray</span></td></tr>
+                <tr><td class="a-span3"><span class="a-text-bold">Recommended Uses</span></td>
+                    <td><span class="a-size-base po-break-word">Daily wear</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <hr class="a-divider-normal">
+
+        <!-- About this item: 卖点要点 -->
+        <div id="feature-bullets" class="feature-bullets">
+          <h2 class="a-spacing-mini">About this item</h2>
+          <ul class="a-unordered-list a-vertical a-spacing-mini">
+            <li><span class="a-list-item">Long-lasting fragrance up to 12 hours.</span></li>
+            <li><span class="a-list-item">Top notes of bergamot, jasmine, sandalwood.</span></li>
+            <li><span class="a-list-item">Cruelty-free and dermatologist-tested.</span></li>
+            <li><span class="a-list-item">Elegant glass bottle with refillable design.</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ---------- 2.3 右列: 购买框 #rightCol / #buybox ---------- -->
+      <aside id="rightCol" class="dp-right-col">
+        <div id="desktop_buybox_feature_div">
+          <div id="desktop_buybox" class="buybox">
+            <div id="corePrice_desktop" class="buybox-price">
+              <span class="a-price"><span class="a-offscreen">$39.99</span>
+                <span aria-hidden="true">
+                  <span class="a-price-symbol">$</span>
+                  <span class="a-price-whole">39<span class="a-price-decimal">.</span></span>
+                  <span class="a-price-fraction">99</span>
+                </span>
+              </span>
+            </div>
+
+            <div id="deliveryBlockMessage" class="delivery-block">
+              <span class="a-text-bold">FREE delivery</span> Tomorrow if ordered within 4 hrs 12 mins
+            </div>
+            <div id="contextualIngressPtLabel_deliveryShortAddressV2">
+              Delivering to New York 10001
+              <a href="#" class="a-link-normal"> – Update location</a>
+            </div>
+
+            <div id="availability" class="availability">
+              <span class="a-size-medium a-color-success">In Stock</span>
+            </div>
+
+            <div id="qtySelectorContainer" class="qty-row">
+              <label for="quantity">Quantity:</label>
+              <select id="quantity" name="quantity">
+                <option>1</option><option>2</option><option>3</option>
+              </select>
+            </div>
+
+            <div id="addToCart_feature_div">
+              <span id="submit.add-to-cart" class="a-button a-button-primary a-button-icon">
+                <span class="a-button-inner">
+                  <button class="a-button-input" type="submit">Add to Cart</button>
+                </span>
+              </span>
+            </div>
+
+            <div id="buyNow_feature_div">
+              <span id="submit.buy-now" class="a-button a-button-primary a-button-buynow">
+                <span class="a-button-inner">
+                  <button class="a-button-input" type="submit">Buy Now</button>
+                </span>
+              </span>
+            </div>
+
+            <hr class="a-divider-normal">
+
+            <ul class="merchant-info a-unordered-list a-nostyle a-vertical">
+              <li><span class="a-text-bold">Ships from</span> Amazon</li>
+              <li><span class="a-text-bold">Sold by</span> SampleBrand Official</li>
+              <li><span class="a-text-bold">Returns</span> 30-day refund/replacement</li>
+              <li><span class="a-text-bold">Payment</span> Secure transaction</li>
+            </ul>
+
+            <div id="addToWishList_feature_div">
+              <button id="add-to-wishlist-button" class="a-button a-button-base">
+                Add to List
+              </button>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+    </div><!-- /#centerCol_wrapper -->
+
+    <!-- ============================================================
+         3. 沉浸式视图区块 #immersiveView_feature_div
+         对应 URL 锚点 #immersive-view_1774959928401
+         结构特征:
+           - 多个全屏 panel 垂直堆叠,每个 panel 有左右文本+图片
+           - data-immersive-view-id 用来锚定单个 panel
+    ============================================================ -->
+    <section id="immersiveView_feature_div" class="immersive-view-section">
+      <div id="immersive-view_1774959928401"
+           class="immersive-view-panel"
+           data-immersive-view-id="1774959928401">
+        <div class="iv-panel-media">
+          <img alt="Immersive panel hero"
+               src="https://placehold.co/960x540?text=Immersive+Hero">
+        </div>
+        <div class="iv-panel-copy">
+          <h2 class="iv-headline">Crafted for every moment</h2>
+          <p class="iv-subhead">A signature blend, designed to linger.</p>
+        </div>
+      </div>
+
+      <div id="immersive-view_1774959928402"
+           class="immersive-view-panel iv-reverse"
+           data-immersive-view-id="1774959928402">
+        <div class="iv-panel-media">
+          <img alt="Immersive panel notes"
+               src="https://placehold.co/960x540?text=Notes">
+        </div>
+        <div class="iv-panel-copy">
+          <h2 class="iv-headline">Top, heart &amp; base notes</h2>
+          <ul class="iv-list">
+            <li><strong>Top:</strong> Bergamot, Pink Pepper</li>
+            <li><strong>Heart:</strong> Jasmine, Rose</li>
+            <li><strong>Base:</strong> Sandalwood, Musk</li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="immersive-view_1774959928403"
+           class="immersive-view-panel"
+           data-immersive-view-id="1774959928403">
+        <div class="iv-panel-media">
+          <img alt="Immersive panel craftsmanship"
+               src="https://placehold.co/960x540?text=Craftsmanship">
+        </div>
+        <div class="iv-panel-copy">
+          <h2 class="iv-headline">Refillable. Sustainable.</h2>
+          <p>The glass bottle is designed for a lifetime of refills.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         4. A+ 内容 #aplus / aplus-v2
+         Amazon 富文本图文模块,品牌方上传,模块化卡片
+    ============================================================ -->
+    <section id="aplus_feature_div" class="aplus-feature">
+      <div id="aplus" class="aplus-v2 desktop celwidget" role="region" aria-label="A+ Content">
+        <div class="aplus-module module-1 apm-brand-story">
+          <div class="apm-brand-story-background-image">
+            <img alt="Brand story" src="https://placehold.co/1200x400?text=Brand+Story">
+          </div>
+          <h2 class="apm-brand-story-heading">From our atelier to your everyday</h2>
+        </div>
+
+        <div class="aplus-module module-2 apm-comparison-table">
+          <h3>Compare similar items</h3>
+          <table class="comparison-table">
+            <thead>
+              <tr><th></th><th>This Item</th><th>Variant A</th><th>Variant B</th></tr>
+            </thead>
+            <tbody>
+              <tr><th>Price</th><td>$39.99</td><td>$49.99</td><td>$29.99</td></tr>
+              <tr><th>Size</th><td>50ml</td><td>100ml</td><td>30ml</td></tr>
+              <tr><th>Scent family</th><td>Floral</td><td>Woody</td><td>Fresh</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="aplus-module module-3 apm-image-row">
+          <div class="apm-image"><img alt="" src="https://placehold.co/400x400?text=A%2B+1"></div>
+          <div class="apm-image"><img alt="" src="https://placehold.co/400x400?text=A%2B+2"></div>
+          <div class="apm-image"><img alt="" src="https://placehold.co/400x400?text=A%2B+3"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         5. Product Details / 详细规格 #productDetails
+    ============================================================ -->
+    <section id="productDetails_feature_div" class="product-details-section">
+      <h2>Product details</h2>
+      <table id="productDetails_techSpec_section_1" class="prodDetTable">
+        <tbody>
+          <tr><th>Item Weight</th><td>0.3 lbs</td></tr>
+          <tr><th>Product Dimensions</th><td>3 x 3 x 5 inches</td></tr>
+          <tr><th>Date First Available</th><td>March 12, 2024</td></tr>
+          <tr><th>Manufacturer</th><td>SampleBrand</td></tr>
+          <tr><th>ASIN</th><td>B0G4M937GT</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ============================================================
+         6. 评论区 #reviewsMedley / #customerReviews
+    ============================================================ -->
+    <section id="reviewsMedley" class="reviews-medley">
+      <a id="customerReviews"></a>
+      <h2>Customer reviews</h2>
+
+      <div id="cm_cr_dp_d_rating_histogram" class="histogram">
+        <div class="averageStarRatingNumerical">4.5 out of 5</div>
+        <ul class="histogram-rows">
+          <li><span>5 star</span><span class="bar"><i style="width:70%"></i></span><span>70%</span></li>
+          <li><span>4 star</span><span class="bar"><i style="width:18%"></i></span><span>18%</span></li>
+          <li><span>3 star</span><span class="bar"><i style="width:7%"></i></span><span>7%</span></li>
+          <li><span>2 star</span><span class="bar"><i style="width:3%"></i></span><span>3%</span></li>
+          <li><span>1 star</span><span class="bar"><i style="width:2%"></i></span><span>2%</span></li>
+        </ul>
+      </div>
+
+      <div id="cm-cr-dp-review-list" class="review-list">
+        <div class="review a-section" data-hook="review">
+          <div class="review-header">
+            <span class="a-profile-name">Jane D.</span>
+            <i class="a-icon-star a-star-5"><span class="a-icon-alt">5.0 out of 5 stars</span></i>
+            <span class="review-title">Absolutely love it</span>
+          </div>
+          <span class="review-date">Reviewed in the United States on March 4, 2025</span>
+          <span class="review-body">Lasts all day, gets compliments everywhere I go.</span>
+        </div>
+        <div class="review a-section" data-hook="review">
+          <div class="review-header">
+            <span class="a-profile-name">Mark P.</span>
+            <i class="a-icon-star a-star-4"><span class="a-icon-alt">4.0 out of 5 stars</span></i>
+            <span class="review-title">Great gift</span>
+          </div>
+          <span class="review-date">Reviewed in the United States on February 11, 2025</span>
+          <span class="review-body">Bought for my partner; she loved it.</span>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /#a-page -->
+</main>
+
+<!-- ============================================================
+     7. 页脚 #navFooter
+============================================================ -->
+<footer id="navFooter" class="nav-footer" role="contentinfo">
+  <a id="navBackToTop" href="#navbar">Back to top</a>
+  <div class="navFooterLine">
+    <div class="navFooterColumn">
+      <h3 class="navFooterColHead">Get to Know Us</h3>
+      <ul><li><a href="#">Careers</a></li><li><a href="#">About Amazon</a></li></ul>
+    </div>
+    <div class="navFooterColumn">
+      <h3 class="navFooterColHead">Make Money with Us</h3>
+      <ul><li><a href="#">Sell on Amazon</a></li><li><a href="#">Become an Affiliate</a></li></ul>
+    </div>
+    <div class="navFooterColumn">
+      <h3 class="navFooterColHead">Amazon Payment Products</h3>
+      <ul><li><a href="#">Amazon Business Card</a></li><li><a href="#">Gift Cards</a></li></ul>
+    </div>
+    <div class="navFooterColumn">
+      <h3 class="navFooterColHead">Let Us Help You</h3>
+      <ul><li><a href="#">Your Account</a></li><li><a href="#">Help</a></li></ul>
+    </div>
+  </div>
+  <div class="navFooterCopyright">
+    &copy; 1996-2026, Amazon.com, Inc. (Reference clone for layout study only.)
+  </div>
+</footer>
+
+</body>
+</html>
